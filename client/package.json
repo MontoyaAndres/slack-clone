@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "babel-eslint": "^8.2.3",
+    "jwt-decode": "^2.2.0",
     "mobx": "^5.0.0",
     "mobx-react": "^5.2.2",
     "prop-types": "^15.6.1",
