@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import styled from 'styled-components';
 import { Input } from 'semantic-ui-react';
 
@@ -14,9 +13,5 @@ const sendMessage = ({ channelName }) => (
     <Input fluid placeholder={`Message #${channelName}`} />
   </SendMessageWrapper>
 );
-
-sendMessage.propTypes = {
-  channelName: propTypes.string.isRequired
-};
 
 export default sendMessage;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
 import { Form, Message, Button, Input, Container, Header } from 'semantic-ui-react';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 class Register extends Component {
   state = {
@@ -112,12 +112,5 @@ const registerMutation = gql`
     }
   }
 `;
-
-Register.propTypes = {
-  mutate: propTypes.func.isRequired,
-  history: propTypes.shape({
-    push: propTypes.func
-  }).isRequired
-};
 
 export default graphql(registerMutation)(Register);

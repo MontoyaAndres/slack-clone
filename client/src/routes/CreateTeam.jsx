@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Message, Form, Button, Input, Container, Header } from 'semantic-ui-react';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 class CreateTeam extends Component {
   constructor(props) {
@@ -90,12 +90,5 @@ const createTeamMutation = gql`
     }
   }
 `;
-
-CreateTeam.propTypes = {
-  mutate: propTypes.func.isRequired,
-  history: propTypes.shape({
-    push: propTypes.func
-  }).isRequired
-};
 
 export default graphql(createTeamMutation)(observer(CreateTeam));

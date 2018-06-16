@@ -26,6 +26,8 @@ module.exports = {
     "node": true
   },
   "rules": {
+    "react/prop-types": 0,
+
     "react/no-array-index-key": 0,
     "complexity": 0,
     "no-nested-ternary": 0,

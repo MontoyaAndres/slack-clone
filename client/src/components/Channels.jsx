@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ChannelWrapper = styled.div`
@@ -71,26 +70,5 @@ const Channels = ({ teamName, username, channels, users }) => (
     </div>
   </ChannelWrapper>
 );
-
-Channels.propTypes = {
-  teamName: propTypes.string.isRequired,
-  username: propTypes.string.isRequired,
-  channels: propTypes.array.isRequired,
-  users: propTypes.array.isRequired
-};
-
-Bubble.propTypes = {
-  on: propTypes.bool.isRequired
-};
-
-channel.propTypes = {
-  id: propTypes.number.isRequired,
-  name: propTypes.string.isRequired
-};
-
-user.propTypes = {
-  id: propTypes.number.isRequired,
-  name: propTypes.string.isRequired
-};
 
 export default Channels;

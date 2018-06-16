@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import propTypes from 'prop-types';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import { Message, Form, Button, Input, Container, Header } from 'semantic-ui-react';
 
 class Login extends Component {
@@ -101,12 +101,5 @@ const LoginMutation = gql`
     }
   }
 `;
-
-Login.propTypes = {
-  mutate: propTypes.func.isRequired,
-  history: propTypes.shape({
-    push: propTypes.func
-  }).isRequired
-};
 
 export default graphql(LoginMutation)(observer(Login));

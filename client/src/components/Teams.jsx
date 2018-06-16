@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import styled from 'styled-components';
 
 const TeamWrapper = styled.div`
@@ -40,14 +39,5 @@ const Teams = ({ teams }) => (
     <TeamList>{teams.map(team)}</TeamList>
   </TeamWrapper>
 );
-
-Teams.propTypes = {
-  teams: propTypes.array.isRequired
-};
-
-team.propTypes = {
-  id: propTypes.number.isRequired,
-  letter: propTypes.string.isRequired
-};
 
 export default Teams;
