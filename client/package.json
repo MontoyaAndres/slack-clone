@@ -13,7 +13,8 @@
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.3.1",
     "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.81.1"
+    "semantic-ui-react": "^0.81.1",
+    "styled-components": "^3.3.2"
   },
   "scripts": {
     "start": "NODE_ENV=development react-scripts start",
