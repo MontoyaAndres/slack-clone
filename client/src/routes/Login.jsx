@@ -11,21 +11,19 @@ class Login extends Component {
     extendObservable(this, {
       email: '',
       password: '',
-      errors: {},
+      errors: {}
     });
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  async onSubmit() {
+  async handleSubmit() {
     const { email, password } = this;
     const response = await this.props.mutate({
-      variables: { email, password },
+      variables: { email, password }
     });
 
-    const {
-      ok, token, refreshToken, errors,
-    } = response.data.login;
+    const { ok, token, refreshToken, errors } = response.data.login;
 
     if (ok) {
       localStorage.setItem('token', token);
@@ -41,13 +39,17 @@ class Login extends Component {
     }
   }
 
-  onChange(e) {
+  handleChange(e) {
     const { name, value } = e.target;
     this[name] = value;
   }
 
   render() {
-    const { email, password, errors: { emailError, passwordError } } = this;
+    const {
+      email,
+      password,
+      errors: { emailError, passwordError }
+    } = this;
 
     const errorList = [];
 
@@ -64,25 +66,23 @@ class Login extends Component {
         <Header as="h2">Login</Header>
         <Form>
           <Form.Field error={!!emailError}>
-            <Input type="email" name="email" onChange={this.onChange} value={email} placeholder="Email" fluid />
+            <Input type="email" name="email" onChange={this.handleChange} value={email} placeholder="Email" fluid />
           </Form.Field>
           <Form.Field error={!!passwordError}>
             <Input
               name="password"
-              onChange={this.onChange}
+              onChange={this.handleChange}
               value={password}
               type="password"
               placeholder="Password"
               fluid
             />
           </Form.Field>
-          <Button onClick={this.onSubmit}>Submit</Button>
+          <Button onClick={this.handleSubmit}>Submit</Button>
         </Form>
-        {errorList.length > 0 ? <Message
-          error
-          header="There was some errors with your submission."
-          list={errorList}
-        /> : null}
+        {errorList.length > 0 ? (
+          <Message error header="There was some errors with your submission." list={errorList} />
+        ) : null}
       </Container>
     );
   }
@@ -105,8 +105,8 @@ const LoginMutation = gql`
 Login.propTypes = {
   mutate: propTypes.func.isRequired,
   history: propTypes.shape({
-    push: propTypes.func,
-  }).isRequired,
+    push: propTypes.func
+  }).isRequired
 };
 
 export default graphql(LoginMutation)(observer(Login));

@@ -3,9 +3,7 @@ import propTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 const Home = ({ data: { allUsers = [] } }) => (
-  <Fragment>
-    {allUsers.map(user => <h1 key={user.id}>{user.email}</h1>)}
-  </Fragment>
+  <Fragment>{allUsers.map(user => <h1 key={user.id}>{user.email}</h1>)}</Fragment>
 );
 
 const allUsersQuery = gql`
@@ -19,8 +17,8 @@ const allUsersQuery = gql`
 
 Home.propTypes = {
   data: propTypes.shape({
-    allUsers: propTypes.array,
-  }).isRequired,
+    allUsers: propTypes.array
+  }).isRequired
 };
 
 export default graphql(allUsersQuery)(Home);

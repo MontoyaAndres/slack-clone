@@ -19,14 +19,14 @@ const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers'))
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 const app = express();
 const grapqhlEndpoint = '/graphql';
 const corsOptions = {
   origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200
 };
 
 // middleware to auth
@@ -54,15 +54,19 @@ app
   .use(cors(corsOptions))
   .use(addUser)
   .use(helmet())
-  .use(grapqhlEndpoint, express.json(), graphqlExpress(req => ({
-    schema,
-    context: {
-      models,
-      user: req.user,
-      SECRET: SECRET1.key,
-      SECRET2: SECRET2.key,
-    },
-  })))
+  .use(
+    grapqhlEndpoint,
+    express.json(),
+    graphqlExpress(req => ({
+      schema,
+      context: {
+        models,
+        user: req.user,
+        SECRET: SECRET1.key,
+        SECRET2: SECRET2.key
+      }
+    }))
+  )
   .use('/graphiql', graphiqlExpress({ endpointURL: grapqhlEndpoint }));
 
 models.sequelize.sync().then(() => app.listen(process.env.PORT || 8080));

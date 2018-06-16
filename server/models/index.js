@@ -4,18 +4,18 @@ const sequelize = new Sequelize('slack', 'root', 'fcbarcelona123', {
   host: 'localhost',
   dialect: 'mysql',
   define: {
-    underscored: true,
-  },
+    underscored: true
+  }
 });
 
 const models = {
   User: sequelize.import('./user'),
   Channel: sequelize.import('./channel'),
   Message: sequelize.import('./message'),
-  Team: sequelize.import('./team'),
+  Team: sequelize.import('./team')
 };
 
-Object.keys(models).forEach((modelName) => {
+Object.keys(models).forEach(modelName => {
   if ('associate' in models[modelName]) {
     models[modelName].associate(models);
   }

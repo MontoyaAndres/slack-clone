@@ -11,20 +11,20 @@ class CreateTeam extends Component {
 
     extendObservable(this, {
       name: '',
-      errors: {},
+      errors: {}
     });
 
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  async onSubmit() {
+  async handleSubmit() {
     const { name } = this;
     let response = null;
 
     try {
       response = await this.props.mutate({
-        variables: { name },
+        variables: { name }
       });
     } catch (err) {
       this.props.history.push('/login');
@@ -45,13 +45,16 @@ class CreateTeam extends Component {
     }
   }
 
-  onChange(e) {
+  handleChange(e) {
     const { name, value } = e.target;
     this[name] = value;
   }
 
   render() {
-    const { name, errors: { nameError } } = this;
+    const {
+      name,
+      errors: { nameError }
+    } = this;
 
     const errorList = [];
 
@@ -64,9 +67,9 @@ class CreateTeam extends Component {
         <Header as="h2">Create a team</Header>
         <Form>
           <Form.Field error={!!nameError}>
-            <Input name="name" onChange={this.onChange} value={name} placeholder="Name" fluid />
+            <Input name="name" onChange={this.handleChange} value={name} placeholder="Name" fluid />
           </Form.Field>
-          <Button onClick={this.onSubmit}>Submit</Button>
+          <Button onClick={this.handleSubmit}>Submit</Button>
         </Form>
         {errorList.length > 0 ? (
           <Message error header="There was some errors with your submission" list={errorList} />
@@ -91,8 +94,8 @@ const createTeamMutation = gql`
 CreateTeam.propTypes = {
   mutate: propTypes.func.isRequired,
   history: propTypes.shape({
-    push: propTypes.func,
-  }).isRequired,
+    push: propTypes.func
+  }).isRequired
 };
 
 export default graphql(createTeamMutation)(observer(CreateTeam));

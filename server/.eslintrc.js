@@ -1,6 +1,183 @@
 module.exports = {
-	"extends": "airbnb-base",
-	"rules": {
-		"no-tabs": 0
-	}
+  extends: [
+    'airbnb-base',
+    'prettier'
+  ],
+  "rules": {
+    "no-tabs": 0
+  },
+  plugins: ['prettier'],
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "codeFrame": false
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "complexity": 0,
+    "no-nested-ternary": 0,
+    "accessor-pairs": 2,
+    "array-callback-return": 2,
+    "block-scoped-var": 2,
+    "brace-style": [
+      2,
+      "1tbs"
+    ],
+    "callback-return": 2,
+    "curly": 2,
+    "dot-location": [
+      2,
+      "property"
+    ],
+    "dot-notation": 2,
+    "default-case": 2,
+    "eol-last": 2,
+    "eqeqeq": 2,
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "keyword-spacing": 2,
+    "max-depth": [
+      2,
+      6
+    ],
+    "max-statements": [
+      "error",
+      40,
+      {
+        "ignoreTopLevelFunctions": true
+      }
+    ],
+    "no-alert": 2,
+    "no-bitwise": 0,
+    "no-cond-assign": 2,
+    "no-dupe-args": 2,
+    "no-dupe-keys": 2,
+    "no-duplicate-case": 2,
+    "no-dupe-class-members": 2,
+    "no-empty": 2,
+    "no-empty-function": 2,
+    "no-eq-null": 2,
+    "no-eval": 2,
+    "no-ex-assign": 2,
+    "no-extend-native": 2,
+    "no-extra-boolean-cast": 2,
+    "no-extra-parens": 0,
+    "no-extra-semi": 1,
+    "no-fallthrough": 2,
+    "no-floating-decimal": 2,
+    "no-func-assign": 2,
+    "no-implied-eval": 2,
+    "no-implicit-globals": 2,
+    "no-inner-declarations": [
+      2,
+      "both"
+    ],
+    "no-invalid-regexp": 2,
+    "no-irregular-whitespace": 2,
+    "no-iterator": 2,
+    "no-lone-blocks": 2,
+    "no-loop-func": 2,
+    "no-multi-spaces": 2,
+    "no-multi-str": 2,
+    "no-negated-in-lhs": 2,
+    "no-new": 2,
+    "no-new-func": 2,
+    "no-new-wrappers": 2,
+    "no-obj-calls": 2,
+    "no-redeclare": 2,
+    "no-regex-spaces": 2,
+    "no-restricted-syntax": [
+      2,
+      "WithStatement"
+    ],
+    "no-sparse-arrays": 2,
+    "no-unexpected-multiline": 2,
+    "no-unsafe-finally": 2,
+    "no-unreachable": 2,
+    "no-unused-expressions": 0,
+    "no-unused-vars": [
+      2,
+      {
+        "args": "none"
+      }
+    ],
+    "no-void": 2,
+    "no-undefined": 0,
+    "prefer-const": 2,
+    "prefer-template": 2,
+    "space-before-blocks": 2,
+    "strict": [
+      2,
+      "global"
+    ],
+    "use-isnan": 2,
+    "valid-jsdoc": 2,
+    "valid-typeof": 2,
+    "class-methods-use-this": 0,
+    "vars-on-top": 2,
+    "wrap-iife": 2,
+    "arrow-body-style": [
+      2,
+      "as-needed"
+    ],
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
+      }
+    ],
+    "no-console": 0,
+    "import/prefer-default-export": 0,
+    "import": 0,
+    "func-names": 0,
+    "space-before-function-paren": 0,
+    "comma-dangle": 0,
+    "max-len": 0,
+    "import/extensions": 0,
+    "no-underscore-dangle": 0,
+    "consistent-return": 0,
+    "react/display-name": 0,
+    "import/no-extraneous-dependencies": 0,
+    "radix": 0,
+    "no-shadow": [
+      2,
+      {
+        "hoist": "all",
+        "allow": [
+          "resolve",
+          "reject",
+          "done",
+          "next",
+          "err",
+          "error"
+        ]
+      }
+    ],
+    "quotes": [
+      2,
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "printWidth": 120
+      }
+    ]
+  }
 };

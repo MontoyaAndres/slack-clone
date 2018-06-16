@@ -5,22 +5,22 @@ import bcrypt from 'bcrypt';
 export const createTokens = async (user, secret, secret2) => {
   const createToken = jwt.sign(
     {
-      user: pick(user, ['id']),
+      user: pick(user, ['id'])
     },
     secret,
     {
-      expiresIn: '1h',
-    },
+      expiresIn: '1h'
+    }
   );
 
   const createRefreshToken = jwt.sign(
     {
-      user: pick(user, 'id'),
+      user: pick(user, 'id')
     },
     secret2,
     {
-      expiresIn: '7d',
-    },
+      expiresIn: '7d'
+    }
   );
 
   return [createToken, createRefreshToken];
@@ -29,7 +29,9 @@ export const createTokens = async (user, secret, secret2) => {
 export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2) => {
   let userId = 0;
   try {
-    const { user: { id } } = jwt.decode(refreshToken);
+    const {
+      user: { id }
+    } = jwt.decode(refreshToken);
     userId = id;
   } catch (err) {
     return {};
@@ -57,7 +59,7 @@ export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2
   return {
     token: newToken,
     refreshToken: newRefreshToken,
-    user,
+    user
   };
 };
 
@@ -67,7 +69,7 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     // user with provided email not found
     return {
       ok: false,
-      errors: [{ path: 'email', message: 'Wrong email' }],
+      errors: [{ path: 'email', message: 'Wrong email' }]
     };
   }
 
@@ -76,7 +78,7 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     // bad password
     return {
       ok: false,
-      errors: [{ path: 'password', message: 'Wrong password' }],
+      errors: [{ path: 'password', message: 'Wrong password' }]
     };
   }
 
@@ -87,6 +89,6 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
   return {
     ok: true,
     token,
-    refreshToken,
+    refreshToken
   };
 };
