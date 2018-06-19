@@ -2,7 +2,7 @@ export default `
   type Team {
     id: Int!
     name: String!
-    owner: User!
+    owner: Int!
     members: [User!]!
     channels: [Channel!]!
   }
@@ -20,6 +20,7 @@ export default `
 
   type Query {
     allTeams: [Team!]!
+    inviteTeams: [Team!]!
   }
 
   type Mutation {

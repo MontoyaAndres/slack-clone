@@ -56,7 +56,7 @@ const user = ({ id, name }) => (
   </SideBarListItem>
 );
 
-const Channels = ({ teamName, username, channels, users, onAddChannelClick, teamId, onInvitePeopleClick }) => (
+const Channels = ({ teamName, username, channels, users, onAddChannelClick, teamId, onInvitePeopleClick, isOwner }) => (
   <ChannelWrapper>
     <PushLeft>
       <TeamNameHeader>{teamName}</TeamNameHeader>
@@ -65,7 +65,7 @@ const Channels = ({ teamName, username, channels, users, onAddChannelClick, team
     <div>
       <SideBarList>
         <SideBarListHeader>
-          Channels <Icon onClick={onAddChannelClick} name="add circle" />
+          Channels {isOwner && <Icon onClick={onAddChannelClick} name="add circle" />}
         </SideBarListHeader>
         {channels.map(c => channel(c, teamId))}
       </SideBarList>
@@ -76,11 +76,13 @@ const Channels = ({ teamName, username, channels, users, onAddChannelClick, team
         {users.map(user)}
       </SideBarList>
     </div>
-    <div>
-      <a href="#invite-people" onClick={onInvitePeopleClick}>
-        + Invite People
-      </a>
-    </div>
+    {isOwner && (
+      <div>
+        <a href="#invite-people" onClick={onInvitePeopleClick}>
+          + Invite People
+        </a>
+      </div>
+    )}
   </ChannelWrapper>
 );
 
