@@ -3,9 +3,10 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import helmet from 'helmet';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
+import expressPlayground from 'graphql-playground-middleware-express';
 
 // keys
 import SECRET1 from './utils/SECRET1.json';
@@ -67,6 +68,6 @@ app
       }
     }))
   )
-  .use('/graphiql', graphiqlExpress({ endpointURL: grapqhlEndpoint }));
+  .get('/graphiql', expressPlayground({ endpoint: grapqhlEndpoint }));
 
 models.sequelize.sync().then(() => app.listen(process.env.PORT || 8080));

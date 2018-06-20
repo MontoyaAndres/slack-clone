@@ -21,6 +21,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.9.1",
+    "graphql-playground-middleware-express": "^1.7.0",
     "nodemon": "^1.17.5",
     "prettier": "^1.13.5"
   },
