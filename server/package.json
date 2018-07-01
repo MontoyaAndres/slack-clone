@@ -31,12 +31,14 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "graphql": "^0.13.2",
+    "graphql-subscriptions": "^0.5.8",
     "graphql-tools": "^3.0.2",
     "helmet": "^3.12.1",
     "jsonwebtoken": "^8.2.2",
     "lodash.pick": "^4.4.0",
     "merge-graphql-schemas": "^1.5.1",
     "mysql2": "^1.5.3",
-    "sequelize": "^4.37.10"
+    "sequelize": "^4.37.10",
+    "subscriptions-transport-ws": "^0.9.12"
   }
 }

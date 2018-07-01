@@ -7,6 +7,9 @@ import { graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import expressPlayground from 'graphql-playground-middleware-express';
+import { createServer } from 'http';
+import { execute, subscribe } from 'graphql';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 
 // keys
 import SECRET1 from './utils/SECRET1.json';
@@ -70,4 +73,21 @@ app
   )
   .get('/graphiql', expressPlayground({ endpoint: grapqhlEndpoint }));
 
-models.sequelize.sync().then(() => app.listen(process.env.PORT || 8080));
+const server = createServer(app);
+
+models.sequelize.sync().then(() => {
+  server.listen(8080, () => {
+    // eslint-disable-next-line
+    new SubscriptionServer(
+      {
+        execute,
+        subscribe,
+        schema
+      },
+      {
+        server,
+        path: '/subscriptions'
+      }
+    );
+  });
+});
