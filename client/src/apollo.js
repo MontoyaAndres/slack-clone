@@ -38,7 +38,7 @@ const httpLinkWithMiddleware = afterwareLink.concat(middlewareLink.concat(httpLi
 
 const wsLink = new WebSocketLink({
   uri: 'ws://localhost:8080/subscriptions',
-  option: {
+  options: {
     reconnect: true
   }
 });

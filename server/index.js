@@ -11,12 +11,11 @@ import { createServer } from 'http';
 import { execute, subscribe } from 'graphql';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 
-// keys
-import SECRET1 from './utils/SECRET1.json';
-import SECRET2 from './utils/SECRET2.json';
-
 import models from './models';
 import { refreshTokens } from './utils/auth';
+
+const SECRET1 = 'secret';
+const SECRET2 = 'secret';
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
@@ -38,7 +37,7 @@ const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
   if (token) {
     try {
-      const { user } = jwt.verify(token, SECRET1.key);
+      const { user } = jwt.verify(token, SECRET1);
       req.user = user;
     } catch (err) {
       const refreshToken = req.headers['x-refresh-token'];
@@ -66,12 +65,15 @@ app
       context: {
         models,
         user: req.user,
-        SECRET: SECRET1.key,
-        SECRET2: SECRET2.key
+        SECRET: SECRET1,
+        SECRET2
       }
     }))
   )
-  .get('/graphiql', expressPlayground({ endpoint: grapqhlEndpoint }));
+  .get(
+    '/graphiql',
+    expressPlayground({ endpoint: grapqhlEndpoint, subscriptionEndpoint: 'ws://localhost:8080/subscriptions' })
+  );
 
 const server = createServer(app);
 
