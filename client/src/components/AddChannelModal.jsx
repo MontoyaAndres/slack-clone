@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
 import findIndex from 'lodash.findindex';
 
-import { allTeamsQuery } from '../graphql/teams';
+import { meQuery } from '../graphql/teams';
 
 const AddChannelModal = ({ open, onClose, values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
   <Modal open={open} onClose={onClose}>
@@ -70,10 +70,11 @@ export default compose(
           if (!ok) {
             return;
           }
-          const data = store.readQuery({ query: allTeamsQuery });
-          const teamIdx = findIndex(data.allTeams, ['id', teamId]);
-          data.allTeams[teamIdx].channels.push(channel);
-          store.writeQuery({ query: allTeamsQuery, data });
+
+          const data = store.readQuery({ query: meQuery });
+          const teamIdx = findIndex(data.me.teams, ['id', teamId]);
+          data.me.teams[teamIdx].channels.push(channel);
+          store.writeQuery({ query: meQuery, data });
         }
       });
       onClose();

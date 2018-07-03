@@ -14,7 +14,7 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import models from './models';
 import { refreshTokens } from './utils/auth';
 
-const SECRET1 = 'secret';
+const SECRET = 'secret';
 const SECRET2 = 'secret';
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
@@ -37,11 +37,11 @@ const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
   if (token) {
     try {
-      const { user } = jwt.verify(token, SECRET1);
+      const { user } = jwt.verify(token, SECRET);
       req.user = user;
     } catch (err) {
       const refreshToken = req.headers['x-refresh-token'];
-      const newTokens = await refreshTokens(token, refreshToken, models, SECRET1, SECRET2);
+      const newTokens = await refreshTokens(token, refreshToken, models, SECRET, SECRET2);
       if (newTokens.token && newTokens.refreshToken) {
         res.set('Access-Control-Expose-Headers', 'x-token, x-refresh-token');
         res.set('x-token', newTokens.token);
@@ -65,7 +65,7 @@ app
       context: {
         models,
         user: req.user,
-        SECRET: SECRET1,
+        SECRET,
         SECRET2
       }
     }))
@@ -84,7 +84,21 @@ models.sequelize.sync().then(() => {
       {
         execute,
         subscribe,
-        schema
+        schema,
+        onConnect: async ({ token, refreshToken }, webSocket) => {
+          // this the context based on websockets
+          if (token && refreshToken) {
+            try {
+              const { user } = jwt.verify(token, SECRET);
+              return { models, user };
+            } catch (err) {
+              const newTokens = await refreshTokens(token, refreshToken, models, SECRET, SECRET2);
+              return { models, user: newTokens.user };
+            }
+          }
+
+          return { models };
+        }
       },
       {
         server,
