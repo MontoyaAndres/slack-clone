@@ -56,7 +56,17 @@ const user = ({ id, name }) => (
   </SideBarListItem>
 );
 
-const Channels = ({ teamName, username, channels, users, onAddChannelClick, teamId, onInvitePeopleClick, isOwner }) => (
+const Channels = ({
+  teamName,
+  username,
+  channels,
+  users,
+  onAddChannelClick,
+  teamId,
+  onInvitePeopleClick,
+  onDirectMessageClick,
+  isOwner
+}) => (
   <ChannelWrapper>
     <PushLeft>
       <TeamNameHeader>{teamName}</TeamNameHeader>
@@ -72,7 +82,9 @@ const Channels = ({ teamName, username, channels, users, onAddChannelClick, team
     </div>
     <div>
       <SideBarList>
-        <SideBarListHeader>Direct Messages</SideBarListHeader>
+        <SideBarListHeader>
+          Direct Messages <Icon onClick={onDirectMessageClick} name="add circle" />
+        </SideBarListHeader>
         {users.map(user)}
       </SideBarList>
     </div>

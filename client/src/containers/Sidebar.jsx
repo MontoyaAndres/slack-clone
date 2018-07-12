@@ -4,11 +4,20 @@ import Channels from '../components/Channels';
 import Teams from '../components/Teams';
 import AddChannelModel from '../components/AddChannelModal';
 import InvitePeopleModal from '../components/InvitePeopleModal';
+import DirectMessageModal from '../components/DirectMessageModal';
 
 class Sidebar extends Component {
   state = {
     openAddChannelModal: false,
-    openInvitePeopleModal: false
+    openInvitePeopleModal: false,
+    openDirectMessageModal: false
+  };
+
+  toggleDirectMessageModal = e => {
+    if (e) {
+      e.preventDefault();
+    }
+    this.setState(state => ({ openDirectMessageModal: !state.openDirectMessageModal }));
   };
 
   toggleAddChannelModal = e => {
@@ -27,7 +36,7 @@ class Sidebar extends Component {
 
   render() {
     const { teams, team, username } = this.props;
-    const { openInvitePeopleModal, openAddChannelModal } = this.state;
+    const { openInvitePeopleModal, openAddChannelModal, openDirectMessageModal } = this.state;
 
     return (
       <Fragment>
@@ -41,7 +50,14 @@ class Sidebar extends Component {
           users={[{ id: 1, name: 'slackbot' }, { id: 2, name: 'user1' }]}
           onAddChannelClick={this.toggleAddChannelModal}
           onInvitePeopleClick={this.toggleInvitePeopleModal}
+          onDirectMessageClick={this.toggleDirectMessageModal}
           isOwner={team.admin}
+        />
+        <DirectMessageModal
+          teamId={team.id}
+          onClose={this.toggleDirectMessageModal}
+          open={openDirectMessageModal}
+          key="sidebar-direct-message-modal"
         />
         <AddChannelModel
           teamId={team.id}

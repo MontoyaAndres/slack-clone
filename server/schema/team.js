@@ -21,6 +21,7 @@ export default `
   type Query {
     allTeams: [Team!]!
     inviteTeams: [Team!]!
+    getTeamMembers(teamId: Int!): [User!]!
   }
 
   type Mutation {

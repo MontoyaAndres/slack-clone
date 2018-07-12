@@ -10,6 +10,7 @@
     "apollo-link-http": "^1.5.4",
     "apollo-link-ws": "^1.0.8",
     "apollo-utilities": "^1.0.16",
+    "downshift": "^2.0.12",
     "formik": "^0.11.11",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
