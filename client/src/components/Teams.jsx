@@ -41,7 +41,12 @@ const team = ({ id, letter }) => (
 
 const Teams = ({ teams }) => (
   <TeamWrapper>
-    <TeamList>{teams.map(team)}</TeamList>
+    <TeamList>
+      {teams.map(team)}
+      <Link key="add-team" to="/create-team">
+        <TeamListItem>+</TeamListItem>
+      </Link>
+    </TeamList>
   </TeamWrapper>
 );
 

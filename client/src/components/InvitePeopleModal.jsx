@@ -71,7 +71,15 @@ export default compose(
         setSubmitting(false);
       } else {
         setSubmitting(false);
-        setErrors(normalizeErrors(errors));
+        const errorsLength = errors.length;
+        const filteredErrors = errors.filter(e => e.message !== 'PRIMARY must be unique');
+        if (errorsLength !== filteredErrors.length) {
+          filteredErrors.push({
+            path: 'email',
+            message: 'This user is already part of the team'
+          });
+        }
+        setErrors(normalizeErrors(filteredErrors));
       }
     }
   })

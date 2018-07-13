@@ -7,8 +7,23 @@ import findIndex from 'lodash.findindex';
 
 import { meQuery } from '../graphql/teams';
 
-const AddChannelModal = ({ open, onClose, values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-  <Modal open={open} onClose={onClose}>
+const AddChannelModal = ({
+  open,
+  onClose,
+  values,
+  handleChange,
+  handleBlur,
+  handleSubmit,
+  isSubmitting,
+  resetForm
+}) => (
+  <Modal
+    open={open}
+    onClose={e => {
+      resetForm();
+      onClose(e);
+    }}
+  >
     <Modal.Header>Add channel</Modal.Header>
     <Modal.Content>
       <Form>
@@ -23,7 +38,14 @@ const AddChannelModal = ({ open, onClose, values, handleChange, handleBlur, hand
           />
         </Form.Field>
         <Form.Group widths="equal">
-          <Button disabled={isSubmitting} fluid onClick={onClose}>
+          <Button
+            disabled={isSubmitting}
+            fluid
+            onClick={e => {
+              resetForm();
+              onClose(e);
+            }}
+          >
             Cancel
           </Button>
           <Button disabled={isSubmitting} fluid onClick={handleSubmit}>
