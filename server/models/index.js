@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('slack', 'root', 'fcbarcelona123', {
+const sequelize = new Sequelize(process.env.TEST_DB || 'slack', 'root', 'fcbarcelona123', {
   host: 'localhost',
   operatorsAliases: Sequelize.Op,
   dialect: 'mysql',
