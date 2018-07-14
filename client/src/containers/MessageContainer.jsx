@@ -3,7 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Comment } from 'semantic-ui-react';
 
-import Messages from '../components/Messages';
+import FileUpload from '../components/FileUpload';
+import RenderText from '../components/RenderText';
 
 const newChannelMessageSubscription = gql`
   subscription($channelId: Int!) {
@@ -13,10 +14,32 @@ const newChannelMessageSubscription = gql`
       user {
         username
       }
+      url
+      filetype
       created_at
     }
   }
 `;
+
+const Message = ({ message: { url, text, filetype } }) => {
+  if (url) {
+    if (filetype.startsWith('image/')) {
+      return <img src={url} alt={filetype} />;
+    } else if (filetype === 'text/plain') {
+      return <RenderText url={url} />;
+    } else if (filetype.startsWith('audio/')) {
+      return (
+        <div>
+          <audio controls>
+            <source src={url} type={filetype} />
+          </audio>
+        </div>
+      );
+    }
+  }
+
+  return <Comment.Text>{text}</Comment.Text>;
+};
 
 class MessageContainer extends React.Component {
   componentWillMount() {
@@ -58,11 +81,24 @@ class MessageContainer extends React.Component {
 
   render() {
     const {
-      data: { loading, messages }
+      data: { loading, messages },
+      channelId
     } = this.props;
 
     return loading ? null : (
-      <Messages>
+      <FileUpload
+        style={{
+          gridColumn: 3,
+          gridRow: 2,
+          paddingLeft: '20px',
+          paddingRight: '20px',
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          overflowY: 'auto'
+        }}
+        channelId={channelId}
+        disableClick
+      >
         <Comment.Group>
           {messages.map(m => (
             <Comment key={`${m.id}-message`}>
@@ -71,7 +107,7 @@ class MessageContainer extends React.Component {
                 <Comment.Metadata>
                   <div>{m.created_at}</div>
                 </Comment.Metadata>
-                <Comment.Text>{m.text}</Comment.Text>
+                <Message message={m} />
                 <Comment.Actions>
                   <Comment.Action>Reply</Comment.Action>
                 </Comment.Actions>
@@ -79,7 +115,7 @@ class MessageContainer extends React.Component {
             </Comment>
           ))}
         </Comment.Group>
-      </Messages>
+      </FileUpload>
     );
   }
 }
@@ -92,6 +128,8 @@ const messagesQuery = gql`
       user {
         username
       }
+      url
+      filetype
       created_at
     }
   }

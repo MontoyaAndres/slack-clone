@@ -10,6 +10,7 @@ import expressPlayground from 'graphql-playground-middleware-express';
 import { createServer } from 'http';
 import { execute, subscribe } from 'graphql';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { apolloUploadExpress } from 'apollo-upload-server';
 
 import models from './models';
 import { refreshTokens } from './utils/auth';
@@ -60,6 +61,7 @@ app
   .use(
     grapqhlEndpoint,
     express.json(),
+    apolloUploadExpress(),
     graphqlExpress(req => ({
       schema,
       context: {
@@ -75,9 +77,11 @@ app
     expressPlayground({ endpoint: grapqhlEndpoint, subscriptionEndpoint: 'ws://localhost:8080/subscriptions' })
   );
 
+app.use('/files', express.static('files'));
+
 const server = createServer(app);
 
-models.sequelize.sync().then(() => {
+models.sequelize.sync({ force: false }).then(() => {
   server.listen(8080, () => {
     // eslint-disable-next-line
     new SubscriptionServer(

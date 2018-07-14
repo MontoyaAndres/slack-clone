@@ -1,9 +1,19 @@
+import { createWriteStream } from 'fs';
 import { withFilter } from 'graphql-subscriptions';
 
 import requiresAuth, { requiresTeamAccess } from '../utils/permissions';
 import pubsub from '../utils/pubsub';
 
 const NEW_CHANNEL_MESSAGE = 'NEW_CHANNEL_MESSAGE';
+const UPLOAD_ROUTE = `${__dirname}/../files`;
+
+const storeUpload = ({ stream, filename }) =>
+  new Promise((resolve, reject) =>
+    stream
+      .pipe(createWriteStream(`${UPLOAD_ROUTE}/${filename}`))
+      .on('finish', () => resolve())
+      .on('error', reject)
+  );
 
 export default {
   Subscription: {
@@ -17,6 +27,7 @@ export default {
     }
   },
   Message: {
+    url: parent => (parent.url ? `http://localhost:8080/${parent.url}` : parent.url),
     user: ({ user, userId }, args, { models }) => {
       if (user) {
         return user;
@@ -31,10 +42,21 @@ export default {
     )
   },
   Mutation: {
-    createMessage: requiresAuth.createResolver(async (parent, args, { models, user }) => {
+    createMessage: requiresAuth.createResolver(async (parent, { file, ...args }, { models, user }) => {
       try {
+        const messageData = args;
+
+        if (file) {
+          // save file
+          const { stream, filename, mimetype } = await file;
+          await storeUpload({ stream, filename });
+
+          messageData.filetype = mimetype;
+          messageData.url = `files/${filename}`;
+        }
+
         const message = await models.Message.create({
-          ...args,
+          ...messageData,
           userId: user.id
         });
 
