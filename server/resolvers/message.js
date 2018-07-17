@@ -37,7 +37,7 @@ export default {
     }
   },
   Query: {
-    messages: requiresAuth.createResolver(async (parent, { channelId }, { models, user }) => {
+    messages: requiresAuth.createResolver(async (parent, { offset, channelId }, { models, user }) => {
       const channel = await models.Channel.findOne({ where: { id: channelId }, raw: true });
 
       if (!channel.public) {
@@ -48,7 +48,10 @@ export default {
         }
       }
 
-      return models.Message.findAll({ order: [['created_at', 'ASC']], where: { channelId } }, { raw: true });
+      return models.Message.findAll(
+        { order: [['created_at', 'ASC']], where: { channelId }, limit: 35, offset },
+        { raw: true }
+      );
     })
   },
   Mutation: {
