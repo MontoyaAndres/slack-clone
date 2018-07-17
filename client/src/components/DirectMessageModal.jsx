@@ -68,7 +68,7 @@ export default compose(
   withFormik({
     mapPropsToValues: () => ({ members: [] }),
     handleSubmit: async ({ members }, { props: { history, onClose, teamId, mutate }, resetForm }) => {
-      const response = await mutate({
+      await mutate({
         variables: { members, teamId },
         update: (store, { data: { getOrCreateChannel } }) => {
           const { id, name } = getOrCreateChannel;
@@ -86,10 +86,9 @@ export default compose(
             });
             store.writeQuery({ query: meQuery, data });
           }
-          /* history.push(`/view-team/${teamId}/${id}`); */
+          history.push(`/view-team/${teamId}/${id}`);
         }
       });
-      console.log(response);
       onClose();
       resetForm();
     }
