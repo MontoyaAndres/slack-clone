@@ -51,10 +51,10 @@ const channel = ({ id, name }, teamId) => (
   </Link>
 );
 
-const user = ({ id, username }, teamId) => (
+const dmChannel = ({ id, name }, teamId) => (
   <SideBarListItem key={`user-${id}`}>
-    <Link to={`/view-team/user/${teamId}/${id}`}>
-      <Bubble /> {username}
+    <Link to={`/view-team/${teamId}/${id}`}>
+      <Bubble /> {name}
     </Link>
   </SideBarListItem>
 );
@@ -63,7 +63,7 @@ const Channels = ({
   teamName,
   username,
   channels,
-  users,
+  dmChannels,
   onAddChannelClick,
   teamId,
   onInvitePeopleClick,
@@ -88,7 +88,7 @@ const Channels = ({
         <SideBarListHeader>
           Direct Messages <Icon onClick={onDirectMessageClick} name="add circle" />
         </SideBarListHeader>
-        {users.map(u => user(u, teamId))}
+        {dmChannels.map(dmC => dmChannel(dmC, teamId))}
       </SideBarList>
     </div>
     {isOwner && (

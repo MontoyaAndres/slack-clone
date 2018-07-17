@@ -69,9 +69,11 @@ export default {
     channels: ({ id }, args, { models, user }) =>
       models.sequelize.query(
         `
-        select c.id, c.name, c.public, c.team_id
-        from channels as c, pcmembers as pc
-        where c.team_id = :teamId and (c.public = true or (pc.user_id = :userId and c.id = pc.channel_id)) group by c.id`,
+        select c.id, c.name, c.public, c.team_id, c.dm
+        from channels as c
+        left join pcmembers as pc
+        on c.id = pc.channel_id
+        where c.team_id = :teamId and (c.public = true or pc.user_id = :userId) group by c.id`,
         {
           replacements: { teamId: id, userId: user.id },
           model: models.Channel,

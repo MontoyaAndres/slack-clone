@@ -18,7 +18,8 @@ const AddChannelModal = ({
   isSubmitting,
   resetForm,
   setFieldValue,
-  teamId
+  teamId,
+  currentUserId
 }) => (
   <Modal
     open={open}
@@ -27,7 +28,7 @@ const AddChannelModal = ({
       onClose(e);
     }}
   >
-    <Modal.Header>Add channel</Modal.Header>
+    <Modal.Header>Add Channel</Modal.Header>
     <Modal.Content>
       <Form>
         <Form.Field>
@@ -55,6 +56,7 @@ const AddChannelModal = ({
               handleChange={(e, { value }) => setFieldValue('members', value)}
               teamId={teamId}
               placeholder="select members to invite"
+              currentUserId={currentUserId}
             />
           </Form.Field>
         )}
@@ -69,7 +71,7 @@ const AddChannelModal = ({
           >
             Cancel
           </Button>
-          <Button disabled={isSubmitting} fluid onClick={handleSubmit}>
+          <Button disabled={isSubmitting} onClick={handleSubmit} fluid>
             Create Channel
           </Button>
         </Form.Group>
@@ -85,6 +87,7 @@ const createChannelMutation = gql`
       channel {
         id
         name
+        dm
       }
     }
   }
@@ -96,7 +99,12 @@ export default compose(
     mapPropsToValues: () => ({ public: true, name: '', members: [] }),
     handleSubmit: async (values, { props: { onClose, teamId, mutate }, setSubmitting }) => {
       await mutate({
-        variables: { teamId, name: values.name, public: values.public, members: values.members },
+        variables: {
+          teamId,
+          name: values.name,
+          public: values.public,
+          members: values.members
+        },
         optimisticResponse: {
           createChannel: {
             __typename: 'Mutation',
@@ -104,7 +112,8 @@ export default compose(
             channel: {
               __typename: 'Channel',
               id: -1,
-              name: values.name
+              name: values.name,
+              dm: false
             }
           }
         },
