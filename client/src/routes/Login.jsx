@@ -5,6 +5,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Message, Form, Button, Input, Container, Header } from 'semantic-ui-react';
 
+import { wsLink } from '../apollo';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,8 @@ class Login extends Component {
     if (ok) {
       localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
+      // reconnect sockets
+      wsLink.subscriptionClient.tryReconnect();
       this.props.history.push('/view-team');
     } else {
       const err = {};

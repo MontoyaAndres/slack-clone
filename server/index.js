@@ -3,6 +3,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import helmet from 'helmet';
+import DataLoader from 'dataloader';
 import { graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
@@ -14,6 +15,7 @@ import { apolloUploadExpress } from 'apollo-upload-server';
 
 import models from './models';
 import { refreshTokens } from './utils/auth';
+import { channelBatcher } from './utils/batchFunctions';
 
 const SECRET = 'secret';
 const SECRET2 = 'secret';
@@ -68,7 +70,8 @@ app
         models,
         user: req.user,
         SECRET,
-        SECRET2
+        SECRET2,
+        channelLoader: new DataLoader(ids => channelBatcher(ids, models, req.user))
       }
     }))
   )
