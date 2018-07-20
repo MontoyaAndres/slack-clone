@@ -65,7 +65,7 @@ class MessageContainer extends React.Component {
 
     if (
       this.scroller.current &&
-      this.scroller.current.scrollTop < 500 &&
+      this.scroller.current.scrollTop < 20 &&
       this.props.data.messages &&
       messages &&
       this.props.data.messages.length !== messages.length
@@ -112,7 +112,7 @@ class MessageContainer extends React.Component {
       channelId
     } = this.props;
 
-    if (this.scroller && this.scroller.current.scrollTop < 500 && hasMoreItems && messages.length >= 35) {
+    if (this.scroller && this.scroller.current.scrollTop < 100 && hasMoreItems && messages.length >= 35) {
       fetchMore({
         variables: {
           channelId,

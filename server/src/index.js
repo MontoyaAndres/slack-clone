@@ -80,7 +80,7 @@ app
     expressPlayground({ endpoint: grapqhlEndpoint, subscriptionEndpoint: 'ws://localhost:8080/subscriptions' })
   );
 
-app.use('/files', express.static('files'));
+app.use('/files', express.static(`${__dirname}/files`));
 
 const server = createServer(app);
 

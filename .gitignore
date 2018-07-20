@@ -1,5 +1,6 @@
 # Project files
-server/files/*
+server/src/files/*
+server/dist/**/*
 
 # Logs
 logs
