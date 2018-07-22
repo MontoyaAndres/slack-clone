@@ -37,6 +37,4 @@ sudo docker-compose down
 
 // Docker compose logs
 
-sudo docker container ls
-
-sudo docker-compose IMAGE_ID
+sudo docker-compose logs
