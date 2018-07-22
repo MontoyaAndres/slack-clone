@@ -1,0 +1,42 @@
+// Build image
+sudo docker build -t slack-clone-server .
+
+// Run image
+sudo docker run -p 8080:8080 slack-clone-server
+
+// Run image (Background)
+sudo docker run -p 8080:8080 -d slack-clone-server
+
+// Remove image
+sudo docker rmi IMAGE_ID -f
+
+// Clean cache (It'll delete all)
+sudo docker system prune -a
+
+// <none> images
+sudo docker images -f "dangling=true" -
+
+// Show containers
+sudo docker container ls
+
+// Stop containers
+sudo docker container stop IMAGE_ID
+
+
+#### IF WE ARE USING DOCKER-COMPOSE
+
+
+// Docker compose up
+sudo docker-compose up
+
+// Docker compose up (Background)
+sudo docker-compose up -d
+
+// Docker compose down
+sudo docker-compose down
+
+// Docker compose logs
+
+sudo docker container ls
+
+sudo docker-compose IMAGE_ID

@@ -74,11 +74,14 @@ app
         channelLoader: new DataLoader(ids => channelBatcher(ids, models, req.user))
       }
     }))
-  )
-  .get(
+  );
+
+if (process.env.NODE_ENV === 'development') {
+  app.get(
     '/graphiql',
     expressPlayground({ endpoint: grapqhlEndpoint, subscriptionEndpoint: 'ws://localhost:8080/subscriptions' })
   );
+}
 
 app.use('/files', express.static(`${__dirname}/files`));
 

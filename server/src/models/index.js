@@ -1,13 +1,18 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize(process.env.TEST_DB || 'slack', 'root', 'fcbarcelona123', {
-  host: 'localhost',
-  operatorsAliases: Sequelize.Op,
-  dialect: 'mysql',
-  define: {
-    underscored: true
+const sequelize = new Sequelize(
+  process.env.TEST_DB || process.env.MYSQL_DATABASE,
+  'root',
+  process.env.MYSQL_ROOT_PASSWORD,
+  {
+    host: process.env.DB_HOST || 'localhost',
+    operatorsAliases: Sequelize.Op,
+    dialect: 'mysql',
+    define: {
+      underscored: true
+    }
   }
-});
+);
 
 const models = {
   User: sequelize.import('./user'),

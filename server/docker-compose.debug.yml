@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  slack-clone:
+    image: slack-clone
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8080:8080
+      - 9229:9229
+    ## set your startup file here
+    command: node --inspect index.js
