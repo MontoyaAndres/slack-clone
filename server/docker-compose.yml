@@ -1,30 +1,32 @@
-version: '2.1'
+version: "3.1"
 
 services:
   redis:
     image: redis
-    networks:
+    networks: 
       - webnet
 
   db:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
     restart: always
+    ports:
+      - "8999:3306"
     networks:
       - webnet
     environment:
-      MYSQL_ROOT_PASSWORD: passwordroot
+      MYSQL_DATABASE: slack
+      MYSQL_ROOT_PASSWORD: admin
 
   web:
     image: slack-clone-server
     ports:
-      - 8080:8080
+      - "8080:8080"
     networks:
       - webnet
     environment:
       DB_HOST: db
       REDIS_HOST: redis
-    command: ["./wait-for-it.sh", "mysql:3306", "--", "node", "index.js"]
+    command: ["./wait-for-it.sh", "db:3306", "--", "npm", "run", "prod"]
 
 networks:
   webnet:
