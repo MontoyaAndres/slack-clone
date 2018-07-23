@@ -40,7 +40,7 @@ services:
       - ./slackserver.template:/etc/nginx/conf.d/slackserver.template
       - files:/files
     ports:
-      - "8080:80"
+      - "80:80"
     networks:
       - webnet
     depends_on:

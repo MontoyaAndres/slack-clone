@@ -1,5 +1,15 @@
 
 
+#### MISSING VIDEOS
+
+
+// Deploy to Vultr
+https://www.youtube.com/watch?v=oISGcNLje2Q&index=67&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL
+
+// Deploy Crete React App to Surge
+https://www.youtube.com/watch?v=ay2EgGdJ7GY&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL&index=68
+
+
 #### DOCKER COMMANDS
 
 
