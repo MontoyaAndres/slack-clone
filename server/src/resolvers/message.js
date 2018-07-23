@@ -27,7 +27,7 @@ export default {
     }
   },
   Message: {
-    url: parent => (parent.url ? `http://localhost:8080/${parent.url}` : parent.url),
+    url: parent => (parent.url ? `${process.env.SERVER_URL || 'http://localhost:8080'}/${parent.url}` : parent.url),
     user: ({ user, userId }, args, { models }) => {
       if (user) {
         return user;

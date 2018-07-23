@@ -49,6 +49,7 @@ https://stackoverflow.com/questions/39175194/docker-compose-persistent-data-mysq
 
 #### MYSQL COMMANDS
 
+
 // MySQL BackUp
 mysqldump -u root -p DataBase > DataBase.sql
 
@@ -62,3 +63,21 @@ drop database slack;
 create database slack;
 use slack;
 source slack.sql;
+
+
+#### DOCKER CLOUD
+
+// Log in
+docker login (your ID docker (andresmontoyain) and the password)
+
+// Build image (First time)
+docker build -t andresmontoyain/slack-clone-server:latest .
+
+// Push container (latest version)
+docker push andresmontoyain/slack-clone-server:latest
+
+// Any update in the code
+docker pull andresmontoyain/slack-clone-server:latest
+
+// More info
+https://www.youtube.com/watch?v=felbIYW5v18&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL&index=66

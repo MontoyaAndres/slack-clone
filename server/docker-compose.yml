@@ -21,18 +21,35 @@ services:
       MYSQL_ROOT_PASSWORD: admin
 
   web:
-    image: slack-clone-server
-    ports:
-      - "8080:8080"
+    image: andresmontoyain/slack-clone-server:latest
     networks:
       - webnet
     environment:
       DB_HOST: db
       REDIS_HOST: redis
+    volumes:
+      - files:/app/files
+    depends_on:
+      - db
+      - redis
     command: ["./wait-for-it.sh", "-t", "0", "db:3306", "--", "npm", "run", "prod"]
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./slackserver.template:/etc/nginx/conf.d/slackserver.template
+      - files:/files
+    ports:
+      - "8080:80"
+    networks:
+      - webnet
+    depends_on:
+      - web
+    command: /bin/bash -c "cat /etc/nginx/conf.d/slackserver.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
 networks:
   webnet:
 
 volumes:
   mysqldata:
+  files:
