@@ -1,3 +1,8 @@
+
+
+#### DOCKER COMMANDS
+
+
 // Build image
 sudo docker build -t slack-clone-server .
 
@@ -23,7 +28,7 @@ sudo docker container ls
 sudo docker container stop IMAGE_ID
 
 
-#### IF WE ARE USING DOCKER-COMPOSE
+#### DOCKER-COMPOSE COMMANDS
 
 
 // Docker compose up
@@ -36,5 +41,24 @@ sudo docker-compose up -d
 sudo docker-compose down
 
 // Docker compose logs
-
 sudo docker-compose logs
+
+// Where "volumes" save the data
+https://stackoverflow.com/questions/39175194/docker-compose-persistent-data-mysql
+
+
+#### MYSQL COMMANDS
+
+// MySQL BackUp
+mysqldump -u root -p DataBase > DataBase.sql
+
+// Connect to Docker DataBase
+sudo mysql -u root -p -h DOCKER_IP -P DOCKER_PORT -D DOCKER_DATABASE
+# More info -> https://www.youtube.com/watch?v=ZWzJzOXuAcE&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL&index=63
+# Know IP -> sudo docker container ls (It'll show the MySQL IP and PORT)
+
+// Upload BackUp
+drop database slack;
+create database slack;
+use slack;
+source slack.sql;
