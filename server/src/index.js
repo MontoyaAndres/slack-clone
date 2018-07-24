@@ -20,8 +20,6 @@ import { channelBatcher, userBatcher } from './utils/batchFunctions';
 const SECRET = 'secret';
 const SECRET2 = 'secret';
 
-console.log('ALL IS OKAY');
-
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
 

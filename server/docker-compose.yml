@@ -21,7 +21,7 @@ services:
       MYSQL_ROOT_PASSWORD: admin
 
   web:
-    image: andresmontoyain/slack-clone-server:latest
+    image: andresmontoyain/slack-clone-server:lastest
     networks:
       - webnet
     environment:

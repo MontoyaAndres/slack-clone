@@ -84,13 +84,13 @@ source slack.sql;
 docker login (your ID docker (andresmontoyain) and the password)
 
 // Build image (First time)
-docker build -t andresmontoyain/slack-clone-server:latest .
+docker build -t andresmontoyain/slack-clone-server:VERSION (1.2.3 or latest) .
 
 // Push container (latest version)
-docker push andresmontoyain/slack-clone-server:latest
+docker push andresmontoyain/slack-clone-server:VERSION (1.2.3 or latest)
 
 // Any update in the code
-docker pull andresmontoyain/slack-clone-server:latest
+docker pull andresmontoyain/slack-clone-server:VERSION (1.2.3 or latest)
 
 // More info
 https://www.youtube.com/watch?v=felbIYW5v18&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL&index=66
