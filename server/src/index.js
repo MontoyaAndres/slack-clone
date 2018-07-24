@@ -15,10 +15,12 @@ import { apolloUploadExpress } from 'apollo-upload-server';
 
 import models from './models';
 import { refreshTokens } from './utils/auth';
-import { channelBatcher } from './utils/batchFunctions';
+import { channelBatcher, userBatcher } from './utils/batchFunctions';
 
 const SECRET = 'secret';
 const SECRET2 = 'secret';
+
+console.log('ALL IS OKAY');
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
@@ -71,7 +73,8 @@ app
         user: req.user,
         SECRET,
         SECRET2,
-        channelLoader: new DataLoader(ids => channelBatcher(ids, models, req.user))
+        channelLoader: new DataLoader(ids => channelBatcher(ids, models, req.user)),
+        userLoader: new DataLoader(ids => userBatcher(ids, models))
       }
     }))
   );
