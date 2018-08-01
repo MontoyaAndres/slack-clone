@@ -12,6 +12,10 @@ https://www.youtube.com/watch?v=ay2EgGdJ7GY&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-ya
 // Deploy slack clone to AWS
 https://www.youtube.com/watch?v=qzTqv6uLYTE&index=69&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL
 
+// Add https
+
+https://www.youtube.com/watch?v=F8lxOmPArCg&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL&index=71
+https://www.youtube.com/watch?v=GiOQmvfbK44&index=72&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL
 
 #### DOCKER COMMANDS
 

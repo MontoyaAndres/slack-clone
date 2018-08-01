@@ -15,4 +15,3 @@ const App = (
 
 ReactDOM.render(App, document.getElementById('root'));
 registerServiceWorker();
-// https://www.youtube.com/watch?v=F8lxOmPArCg&t=1s
