@@ -30,10 +30,6 @@ const schema = makeExecutableSchema({
 
 const app = express();
 const grapqhlEndpoint = '/graphql';
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
-};
 
 // middleware to auth
 const addUser = async (req, res, next) => {
@@ -57,7 +53,7 @@ const addUser = async (req, res, next) => {
 };
 
 app
-  .use(cors(corsOptions))
+  .use(cors('*'))
   .use(addUser)
   .use(helmet())
   .use(

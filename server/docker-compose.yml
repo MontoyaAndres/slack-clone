@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   redis:
-    image: redis
+    image: redis:alpine
 
   db:
     image: mysql
@@ -17,8 +17,7 @@ services:
       MYSQL_DATABASE: slack
 
   server:
-    build:
-      context: .
+    image: slack-clone-server
     environment:
       DB_HOST: db
       REDIS_HOST: redis
@@ -28,6 +27,7 @@ services:
     depends_on:
       - db
       - redis
+    command: ["./wait-for-it.sh", "db:3306", "--", "yarn", "prod"]
 
   nginx:
     image: nginx

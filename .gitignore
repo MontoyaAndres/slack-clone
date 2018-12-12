@@ -1,5 +1,4 @@
 # Project files
-server/src/files/*
 server/dist
 client/build
 
