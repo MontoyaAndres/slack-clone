@@ -1,32 +1,38 @@
-import jwt from 'jsonwebtoken';
-import pick from 'lodash.pick';
-import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import pick from "lodash.pick";
+import bcrypt from "bcryptjs";
 
 export const createTokens = async (user, secret, secret2) => {
   const createToken = jwt.sign(
     {
-      user: pick(user, ['id', 'username'])
+      user: pick(user, ["id", "username"])
     },
     secret,
     {
-      expiresIn: '1h'
+      expiresIn: "1h"
     }
   );
 
   const createRefreshToken = jwt.sign(
     {
-      user: pick(user, 'id')
+      user: pick(user, "id")
     },
     secret2,
     {
-      expiresIn: '7d'
+      expiresIn: "7d"
     }
   );
 
   return [createToken, createRefreshToken];
 };
 
-export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2) => {
+export const refreshTokens = async (
+  token,
+  refreshToken,
+  models,
+  SECRET,
+  SECRET2
+) => {
   let userId = 0;
   try {
     const {
@@ -55,7 +61,11 @@ export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2
     return {};
   }
 
-  const [newToken, newRefreshToken] = await createTokens(user, SECRET, refreshSecret);
+  const [newToken, newRefreshToken] = await createTokens(
+    user,
+    SECRET,
+    refreshSecret
+  );
   return {
     token: newToken,
     refreshToken: newRefreshToken,
@@ -69,7 +79,7 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     // user with provided email not found
     return {
       ok: false,
-      errors: [{ path: 'email', message: 'Wrong email' }]
+      errors: [{ path: "email", message: "Wrong email" }]
     };
   }
 
@@ -78,13 +88,17 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     // bad password
     return {
       ok: false,
-      errors: [{ path: 'password', message: 'Wrong password' }]
+      errors: [{ path: "password", message: "Wrong password" }]
     };
   }
 
   const refreshTokenSecret = user.password + SECRET2;
 
-  const [token, refreshToken] = await createTokens(user, SECRET, refreshTokenSecret);
+  const [token, refreshToken] = await createTokens(
+    user,
+    SECRET,
+    refreshTokenSecret
+  );
 
   return {
     ok: true,

@@ -1,10 +1,8 @@
-FROM node:10.7
+FROM node:8.12.0-alpine
 ENV NODE_ENV production
 WORKDIR /app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+COPY ["package.json", "yarn.lock", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN yarn install --production=true --silent && mv node_modules ../
 COPY dist .
-COPY wait-for-it.sh .
 EXPOSE 8080
-CMD npm run prod
-USER node
+CMD ["yarn", "prod"]
