@@ -19,9 +19,11 @@ https://www.youtube.com/watch?v=GiOQmvfbK44&index=72&list=PLN3n1USn4xlkdRlq3VZ1s
 
 #### DOCKER COMMANDS
 
+// Building image
+sudo docker build -t slack-clone-server . 
 
-// Build image
-sudo docker build -t slack-clone-server .
+// Rebuilding image
+sudo docker build --no-cache -t slack-clone-server .
 
 // Run image
 sudo docker run -p 8080:8080 slack-clone-server

@@ -6,7 +6,7 @@ import { ApolloLink, split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
-const httpLink = createUploadLink({ uri: `http://${process.env.REACT_APP_SERVER_URL}/graphql` });
+const httpLink = createUploadLink({ uri: `${process.env.REACT_APP_SERVER_URL}/graphql` });
 
 const middlewareLink = setContext(() => ({
   headers: {

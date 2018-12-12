@@ -17,11 +17,12 @@ services:
       MYSQL_DATABASE: slack
 
   server:
-    image: slack-clone-server
+    build:
+      context: .
     environment:
       DB_HOST: db
       REDIS_HOST: redis
-      SERVER_URL: 
+      SERVER_URL: https://boiling-tor-29760.herokuapp.com/
     volumes:
       - files:/app/files
     depends_on:
