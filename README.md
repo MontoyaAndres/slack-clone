@@ -3,7 +3,7 @@
 This is and application which is inspiraded in the big software of online communication Slack. This app has the funtionality of create and login users who will can create workspeaces, channels and send text or multimedia messages which are going to send through real time.
 
 <p align="center">
-    <video src="https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804">
+    <img src="https://asciinema.org/a/113463.png">
 </p>
 
 `[![asciicast](https://asciinema.org/a/113463.png)](https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804)`
