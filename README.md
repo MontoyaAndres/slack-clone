@@ -91,7 +91,25 @@ Then run:
 yarn build
 ```
 
-Then run the docker-compose file!
+Then, you need to open the docker-compose.yml file and put in the variable SERVER_URL the host of you api, something like:
+
+```
+server:
+    build:
+      context: .
+    environment:
+      DB_HOST: db
+      REDIS_HOST: redis
+      SERVER_URL: http://api.any-website.com
+    volumes:
+      - files:/app/files
+    depends_on:
+      - db
+      - redis
+    command: ["./wait-for-it.sh", "db:3306", "--", "yarn", "prod"]
+```
+
+And run the docker-compose file!
 
 ```
 sudo docker-compose up
