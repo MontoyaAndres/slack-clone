@@ -6,7 +6,7 @@ This is and application which is inspiraded in the big software of online commun
     <video src="https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804">
 </p>
 
-[![asciicast](https://asciinema.org/a/113463.png)](https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804)
+`[![asciicast](https://asciinema.org/a/113463.png)](https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804)`
 
 ## Client
 
