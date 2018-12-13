@@ -1,6 +1,6 @@
 # Slack chat clone
 
-This is an application which is inspiraded in the big software of online communication Slack. This app has the funtionality to create and login users who will can create workspeaces, channels and send text or multimedia messages which are going to send through real time.
+This is an application which is inspiraded in the big software of online communication Slack. This app has the funtionality to create and login users who will can create workspaces, channels and send text or multimedia messages which are going to send through real time.
 
 <p align="center">
   <img src="http://i.imgur.com/CaT2ODt.gif">
