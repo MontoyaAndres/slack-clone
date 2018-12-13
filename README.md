@@ -1,31 +1,109 @@
 # Slack chat clone
 
-This is and application which is inspiraded in the big software of online communication Slack. This app has the funtionality of create and login users who will can create workspeaces, channels and send text or multimedia messages which are going to send through real time.
+This is an application which is inspiraded in the big software of online communication Slack. This app has the funtionality to create and login users who will can create workspeaces, channels and send text or multimedia messages which are going to send through real time.
 
 <p align="center">
-  <video width="320" height="240" controls>
-    <source src="https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804" type="video/mp4">
-  </video>
+  <img src="https://im2.ezgif.com/tmp/ezgif-2-5bcb30eb82ec.gif">
 </p>
 
-`[![asciicast](https://asciinema.org/a/113463.png)](https://cdn-b-east.streamable.com/video/mp4/37rov.mp4?token=hEVXHNT3NAEmtChPGBdVTg&expires=1544670804)`
+To install it you need to follow this steps:
 
-## Client
+## Client side
 
+First to all, getting in to the folder *client*, then install the dependencies running this command:
+
+```
 yarn install
+```
 
-yarn prod || yarn dev
+Then, we can run it in *development* or *production* mode.
 
-## Server
+#### Development
 
-mkdir server/src/files && chmod -R 777 server/src/files
+First, we need to put the server api on the *.env.development* file, like this for example:
 
-chmod +x server/wait-for-it.sh
+```
+REACT_APP_SERVER_URL="http://localhost:8080"
+```
 
+And then run it!
+
+```
+yarn dev
+```
+
+#### Production
+
+First, we need to put the server api on the *.env.production* file, like this for example:
+
+```
+REACT_APP_SERVER_URL="api.any-website.com"
+```
+
+> Only put the dns, not put any / or protocol like http or https. More info in *src/apollo.js*.
+
+And then pass the jsx code to js!
+
+```
+yarn build
+```
+
+You can run it on python SimpleHTTPServer, apache2 or whatever... It's only a static web page.
+
+## Server side
+
+First to all, getting in to the folder *server*, then install the dependecies running this command:
+
+```
 yarn install
+```
 
-yarn build // to be sure folder files exists
+Then, we can run it in *development* or *production* mode.
 
+#### Development
+
+We need to have installed mysql, node and redis installed in your computer, if you have them, only change the config of the file *src/models/index.js* to your mysql user. For redis only check if the config from *src/utils/pubsub.js* is right.
+
+Then create a folder called *files*:
+
+```
+mkdir src/files && chmod -R 777 src/files
+```
+
+If everything is done, run:
+
+```
+yarn start
+```
+
+#### Production
+
+We need to give all permissions to the bash file wait-for-it.sh, like this:
+
+```
+chmod +x wait-for-it.sh
+```
+Then run:
+
+> Being sure that the folder *files* is within the folder *dist* created by the command below.
+
+```
+yarn build
+```
+
+Then run the docker-compose file!
+
+```
 sudo docker-compose up
+```
 
-chmod -R 777 dist/files // use it on the docker node component
+To finish this, run the container that runs the server of nodejs, once inside, run:
+
+```
+// Using it on the docker node container of slack.
+chmod -R 777 dist/files
+```
+
+Thanks for reading! Any question? Here you go:
+
+andresmontoyafcb@gmail.com
