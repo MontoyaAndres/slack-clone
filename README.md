@@ -17,10 +17,3 @@ yarn install
 yarn build // to be sure folder files exists
 
 sudo docker-compose up
-
-## Heroku
-
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-
-heroku login
-

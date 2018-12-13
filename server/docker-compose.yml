@@ -22,7 +22,7 @@ services:
     environment:
       DB_HOST: db
       REDIS_HOST: redis
-      SERVER_URL: https://boiling-tor-29760.herokuapp.com/
+      SERVER_URL: https://boiling-tor-29760.herokuapp.com
     volumes:
       - files:/app/files
     depends_on:
