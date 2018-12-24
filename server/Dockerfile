@@ -1,4 +1,4 @@
-FROM node:8.12.0-alpine
+FROM node:8.14.1-alpine
 ENV NODE_ENV production
 RUN apk add --no-cache bash
 WORKDIR /app
