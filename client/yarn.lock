@@ -52,7 +52,7 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/runtime@^7.0.0-beta.38", "@babel/runtime@^7.0.0-beta.51", "@babel/runtime@^7.1.2":
+"@babel/runtime@^7.1.2":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.2.0.tgz#b03e42eeddf5898e00646e4c840fa07ba8dcad7f"
   integrity sha512-oouEibCbHMVdZSDlJBO6bZmID/zA/G/Qx3H1d3rSNPTD+L8UNKvCat7aKWSJ74zYbm5zWGh0GQN0hKj8zYFTCg==
@@ -320,13 +320,6 @@ apollo-link-dedup@^1.0.0:
   dependencies:
     apollo-link "^1.2.4"
 
-apollo-link-http-common@^0.2.4:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.6.tgz#47b9012500599fe343e2e87378026384b4fc8c1f"
-  integrity sha512-LUOMWvrZuBP1hyWLBXyaW0KyFeKo79j+k3N+Q4HSkXKbLibnllXQ+JxxoSKGhm0bhREygiLtJAG9JnGlhxGO/Q==
-  dependencies:
-    apollo-link "^1.2.4"
-
 apollo-link-http-common@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.8.tgz#c6deedfc2739db8b11013c3c2d2ccd657152941f"
@@ -365,14 +358,14 @@ apollo-link@^1.0.0, apollo-link@^1.2.4:
     apollo-utilities "^1.0.0"
     zen-observable-ts "^0.8.11"
 
-apollo-upload-client@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/apollo-upload-client/-/apollo-upload-client-8.1.0.tgz#db99eed6af926dbd54cb0bbde30345672c97fc5f"
-  integrity sha512-JEgStzhnwybj1ifE2nViLEl7NTM5+zS++fKbDL95PIpodg2AdYeeN7eEa7RXpYD14iC3FVcsfqgGMREv2+cSxw==
+apollo-upload-client@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/apollo-upload-client/-/apollo-upload-client-10.0.0.tgz#6cc3d0ea2aef40bc237b655f5042809cacee1859"
+  integrity sha512-N0SENiEkZXoY4nl9xxrXFcj/cL0AVkSNQ4aYXSaruCBWE0aKpK6aCe4DBmiEHrK3FAsMxZPEJxBRIWNbsXT8dw==
   dependencies:
-    "@babel/runtime" "^7.0.0-beta.51"
-    apollo-link-http-common "^0.2.4"
-    extract-files "^3.1.0"
+    apollo-link "^1.2.6"
+    apollo-link-http-common "^0.2.8"
+    extract-files "^5.0.0"
 
 apollo-utilities@1.0.27, apollo-utilities@^1.0.27:
   version "1.0.27"
@@ -3415,12 +3408,10 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-files@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-3.1.0.tgz#b70424c9d4a1a4208efe22069388f428e4ae00f1"
-  integrity sha512-urkJPM4N88CMy1AfDw+Avudon6fToTsaG5j5VN0aybn88udv1yrERFCweV78NaZg7DOFsQULkFgvP64vNQFNMQ==
-  dependencies:
-    "@babel/runtime" "^7.0.0-beta.38"
+extract-files@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-5.0.0.tgz#750f1e969b79b8e67a0ac40268dc6346fc339a3a"
+  integrity sha512-mTMXDGagB142JLMIbGRc11sNLPuN6G8qj5lRMx9T41Fkt3ot0OPkehcsLw05uT98LGEae2A1wFFDMkY4VEpbqg==
 
 extract-text-webpack-plugin@3.0.2:
   version "3.0.2"

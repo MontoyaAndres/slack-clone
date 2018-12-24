@@ -9,7 +9,7 @@
     "apollo-link-context": "1.0.12",
     "apollo-link-http": "1.5.9",
     "apollo-link-ws": "1.0.12",
-    "apollo-upload-client": "8.1.0",
+    "apollo-upload-client": "10.0.0",
     "apollo-utilities": "1.0.27",
     "downshift": "2.2.3",
     "formik": "0.11.11",
