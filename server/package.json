@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "apollo-server-express": "^2.0.0",
-    "apollo-upload-server": "^5.0.0",
+    "apollo-upload-server": "^7.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.4",
