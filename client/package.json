@@ -42,7 +42,7 @@
     "eslint": "5.11.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "2.10.0",
-    "eslint-config-react-app": "2.1.0",
+    "eslint-config-react-app": "3.0.6",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-prettier": "2.7.0",
