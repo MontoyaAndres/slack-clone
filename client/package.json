@@ -12,7 +12,7 @@
     "apollo-upload-client": "10.0.0",
     "apollo-utilities": "1.0.27",
     "downshift": "3.1.8",
-    "formik": "0.11.11",
+    "formik": "1.4.1",
     "graphql": "0.13.2",
     "graphql-tag": "2.10.0",
     "jwt-decode": "2.2.0",
