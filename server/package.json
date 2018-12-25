@@ -42,7 +42,7 @@
     "graphql": "^14.0.0",
     "graphql-playground-middleware-express": "^1.7.0",
     "graphql-redis-subscriptions": "^2.0.0",
-    "graphql-subscriptions": "^0.5.8",
+    "graphql-subscriptions": "^1.0.0",
     "graphql-tools": "^3.0.2",
     "helmet": "^3.12.1",
     "jsonwebtoken": "^8.2.2",
