@@ -1,7 +1,5 @@
 
-
 #### MISSING VIDEOS
-
 
 // Deploy to Vultr
 https://www.youtube.com/watch?v=oISGcNLje2Q&index=67&list=PLN3n1USn4xlkdRlq3VZ1sT6SGW0-yajjL
@@ -37,8 +35,8 @@ sudo docker rmi IMAGE_ID -f
 // Clean cache (It'll delete all)
 sudo docker system prune -a
 
-// <none> images
-sudo docker images -f "dangling=true" -
+// remove all <none> images https://stackoverflow.com/questions/33913020/docker-remove-none-tag-images
+sudo docker image prune
 
 // Show containers
 sudo docker container ls
@@ -46,9 +44,7 @@ sudo docker container ls
 // Stop containers
 sudo docker container stop IMAGE_ID
 
-
 #### DOCKER-COMPOSE COMMANDS
-
 
 // Docker compose up
 sudo docker-compose up
@@ -65,9 +61,7 @@ sudo docker-compose logs
 // Where "volumes" save the data
 https://stackoverflow.com/questions/39175194/docker-compose-persistent-data-mysql
 
-
 #### MYSQL COMMANDS
-
 
 // MySQL BackUp
 mysqldump -u root -p DataBase > DataBase.sql
@@ -82,7 +76,6 @@ drop database slack;
 create database slack;
 use slack;
 source slack.sql;
-
 
 #### DOCKER CLOUD
 

@@ -106,7 +106,7 @@ server:
     depends_on:
       - db
       - redis
-    command: ["./wait-for-it.sh", "db:3306", "--", "yarn", "prod"]
+    command: ["./wait-for-it.sh", "-t", "0", "db:3306", "--", "yarn", "prod"]
 ```
 
 And run the docker-compose file!
